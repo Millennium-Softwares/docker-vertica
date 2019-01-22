@@ -1,0 +1,32 @@
+version: '2.4'
+services:
+  node_1:
+    build:
+      context: .
+    ports:
+     - "5433:5433"
+     - "5450:5450"
+    environment:
+      NODE_TYPE: "master"
+      CLUSTER_NODES: "node_1,node_2"
+    depends_on:
+      - node_2
+    links:
+      - node_2
+    volumes:
+      - ../../../../Analytics/data:/srv/vertica/db
+      - ./software/vertica_9.2.0-0_amd64.deb:/tmp/vertica.deb
+    cpu_count: 2
+    memswap_limit: 2G
+    mem_limit: 2G
+  node_2:
+    build:
+      context: .
+    environment:
+      NODE_TYPE: "slave"
+    expose:
+      - "22"
+      - "5433"
+    volumes:
+      - ../../../../Analytics/data:/srv/vertica/db
+      - ./software/vertica_9.2.0-0_amd64.deb:/tmp/vertica.rpm
