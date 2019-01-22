@@ -65,6 +65,7 @@ RUN rm -R /srv/setup
 # Copy bootstrap.sh file
 COPY bootstrap.sh /etc
 
+ENTRYPOINT ["/etc/bootstrap.sh"]
 # Expose ports
 EXPOSE 5433
 EXPOSE 5450
