@@ -72,7 +72,12 @@ else
   fi
 fi
 
+
 echo " -----> Vertica is now running"
+
+# Starting db agent
+echo " ------> Starting vertica agent"
+/etc/init.d/vertica_agent start
 
 # Start Vertica Console service
 #echo " -----> Starting Vertica Console"
