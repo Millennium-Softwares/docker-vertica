@@ -10,7 +10,7 @@ To run your first Vertica container, just type:
 `docker run -p 5433:5433 -p 5444:5444 -p 5450:5450 -it -d millennium/vertica /etc/bootstrap.sh`
 
 If you want to store DB data outside the container, map data path under your desired local folder. Eg:
-`docker run -p 5433:5433 -p 5444:5444 -p 5450:5450 -v /Users/devacc\ 1/Desktop/Millsoft/Analytics/data:/srv/vertica/db -it -d millennium/vertica /etc/bootstrap.sh`
+`docker run -p 5433:5433 -p 5444:5444 -p 5450:5450 -v /Users/devacc\ 1/Desktop/Millsoft/Analytics/data:/srv/vertica/db -it -d mohib/vertica-docker /etc/bootstrap.sh`
 
 When boots up, Vertica checks if DB and/or data are available:
 - If DB is available, but there are no data under */srv/vertica/db,* DB is removed and another empty DB is created
@@ -24,3 +24,5 @@ So, after executed your container, go to `https://localhost:5450/`: you wil reac
 It'll also expose port 5433 to grant access via Client (vsql, JDBC, ODBC,...)
 
 To learn how to use HP Vertica, please refer to [HP Vertica Official Documentation](https://my.vertica.com/hpe-vertica-idol-documentation/) page
+
+To kill `docker kill --signal SIGINT <container_code>`
